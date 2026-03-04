@@ -18,4 +18,4 @@ jobs:
       - name: Install dependencies
         run: pip install pytest
       - name: Run tests
-        run: pytest test_buggy_code.py -v
+        run: pytest test_calculator.py -v
