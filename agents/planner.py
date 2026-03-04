@@ -1,8 +1,8 @@
-from langchain_groq import ChatGroq
-from config import GROQ_API_KEY, MODEL_NAME
 from tools.github_tools import get_file_content, get_repo_structure
+from langchain_ollama import ChatOllama
+llm = ChatOllama(model="llama3.2")
 
-llm = ChatGroq(api_key=GROQ_API_KEY, model=MODEL_NAME)
+
 
 
 def planner_agent(failure_info: dict):
@@ -52,6 +52,7 @@ def planner_agent(failure_info: dict):
 3. Describe exactly how to fix it
 
 Be specific. Reference exact function names and line numbers where possible.
+IMPORTANT: The test file is correct and should NEVER be modified. Only the source file contains the bug.
 """
 
     response = llm.invoke(prompt)

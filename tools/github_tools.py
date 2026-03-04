@@ -79,8 +79,10 @@ def commit_fix(filepath: str, new_content: str, branch_name: str, commit_message
     return f"Fix committed to {branch_name}"
 
 
+import time
+
 def open_pull_request(branch_name: str, title: str, body: str):
-    """Open a PR from the fix branch into main."""
+    time.sleep(3)  # Wait for commit to propagate
     pr = repo.create_pull(
         title=title,
         body=body,

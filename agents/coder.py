@@ -1,8 +1,8 @@
-from langchain_groq import ChatGroq
-from config import GROQ_API_KEY, MODEL_NAME
+from langchain_ollama import ChatOllama
+
 from tools.code_tools import apply_fix_locally
 
-llm = ChatGroq(api_key=GROQ_API_KEY, model=MODEL_NAME)
+llm = ChatOllama(model="llama3.2")
 
 
 def coder_agent(plan_info: dict):
@@ -33,7 +33,10 @@ FILEPATH: <path/to/file.py>
 CONTENT:
 <full fixed file content here>
 
-Only fix the file that contains the bug. Do not modify test files.
+CRITICAL RULES:
+- NEVER modify any file with 'test' in the name
+- ONLY fix the source file (e.g. buggy_code.py)
+- The test file is always correct — the source code must match what the tests expect
 """
 
     response = llm.invoke(prompt)
