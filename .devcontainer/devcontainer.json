@@ -1,0 +1,5 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postStartCommand": "ollama serve > /dev/null 2>&1 &",
+  "forwardPorts": [11434]
+}
